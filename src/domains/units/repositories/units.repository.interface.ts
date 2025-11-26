@@ -7,4 +7,8 @@ export interface UnitsRepositoryInterface {
     cep: string,
     number: string,
   ): Promise<UnitResponseDto | null>
+  findAll(): Promise<UnitResponseDto[]>
+  findById(id: string): Promise<UnitResponseDto | null>
+  update(id: string, data: CreateUnitRequestDto): Promise<void>
+  delete(id: string): Promise<void>
 }
