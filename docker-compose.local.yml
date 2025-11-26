@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16.6
+    container_name: postgres-database
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=P@ssW0rd
+      - POSTGRES_DB=db_vsd
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data    
