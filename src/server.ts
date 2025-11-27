@@ -20,7 +20,8 @@ app.register(appRoutes)
 app
   .listen({
     port: env.PORT,
+    host: "0.0.0.0",
   })
   .then(() => {
-    console.log("HTTP server running!")
+    console.log("API is running!")
   })

@@ -4,7 +4,6 @@ WORKDIR /app
 
 # Instalar rsync e NestJS CLI
 RUN apt-get update && apt-get install -y rsync
-RUN npm install -g @nestjs/cli
 
 COPY . .
 
