@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "knex": "tsx node_modules/knex/bin/cli.js"
+    "knex": "tsx node_modules/knex/bin/cli.js",
+    "start": "node dist/server.js",
+    "build": "tsup src/server.ts --format esm --out-dir dist"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +25,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.3",
     "prettier": "3.6.2",
+    "tsup": "^8.5.1",
     "tsx": "^4.20.6",
     "typescript": "5.8.3",
     "typescript-eslint": "8.38.0"

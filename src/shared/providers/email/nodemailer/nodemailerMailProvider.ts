@@ -1,10 +1,9 @@
-import nodemailer from "nodemailer"
-import Mail from "nodemailer/lib/mailer"
+import nodemailer, { type Transporter } from "nodemailer"
 import { env } from "../../../env/environments"
 import type { IMailProps } from "../MailProvider.interface"
 
 class MailProvider {
-  private readonly client: Mail
+  private readonly client: Transporter
 
   constructor() {
     this.client = nodemailer.createTransport({
