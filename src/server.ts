@@ -11,6 +11,10 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 })
 
+app.get("/health", async () => {
+  return { status: "API is running" }
+})
+
 app.register(appRoutes)
 
 app
