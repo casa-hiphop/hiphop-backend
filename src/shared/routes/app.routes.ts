@@ -6,6 +6,8 @@ import { forgotPasswordRoutes } from "../../domains/users/infra/routes/forgot-pa
 import { resetPasswordRoutes } from "../../domains/users/infra/routes/reset-password.routes"
 import { unitsRoutes } from "../../domains/units/infra/routes/units.routes"
 import { toolsRoutes } from "../../domains/tools/infra/routes/tools.routes"
+import { requestersRoutes } from "../../domains/requesters/infra/routes/requesters.routes"
+import { borrowsRoutes } from "../../domains/borrows/infra/routes/borrows.routes"
 
 export async function appRoutes(server: FastifyInstance) {
   server.register(usersRoutes, { prefix: "/users" })
@@ -14,4 +16,6 @@ export async function appRoutes(server: FastifyInstance) {
   server.register(resetPasswordRoutes, { prefix: "/reset-password" })
   server.register(unitsRoutes, { prefix: "/units" })
   server.register(toolsRoutes, { prefix: "/tools" })
+  server.register(requestersRoutes, { prefix: "/requesters" })
+  server.register(borrowsRoutes, { prefix: "/borrows" })
 }
