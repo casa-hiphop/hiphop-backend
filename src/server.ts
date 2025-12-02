@@ -16,7 +16,12 @@ app.register(fastifyCors, {
   origin:
     env.NODE_ENV === "local"
       ? true // Permite todas as origins em desenvolvimento
-      : [env.FRONTEND_URL, "http://localhost:3000", "http://localhost:3001"],
+      : [
+          "https://casa-hiphop.stack2u.net",
+          env.FRONTEND_URL,
+          "http://localhost:3000",
+          "http://localhost:3001",
+        ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
