@@ -9,7 +9,7 @@ on:
 # Variáveis de ambiente globais
 env:
   PROJECT_NAME: hiphop-backend
-  PRODUCTION_DEPLOY_PATH: /home/deploy/production/hiphop-backend
+  PRODUCTION_DEPLOY_PATH: /home/ubuntu/production/hiphop-backend
 
 jobs:
   # Job para testes e validação de código
@@ -44,7 +44,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           ssh-keyscan -H ${{ secrets.SERVER_HOST_PRODUCTION }} >> ~/.ssh/known_hosts
-      
+
       - name: Deploy para Produção
         if: github.ref == 'refs/heads/main'
         run: |
