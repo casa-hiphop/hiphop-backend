@@ -11,6 +11,7 @@ env:
   PROJECT_NAME: hiphop-backend
   CONTAINER_NAME: hiphop-backend
   APP_PORT: 3333
+  PRODUCTION_DEPLOY_PATH: /home/ubuntu/production/hiphop-backend
 
 jobs:
   # Job para testes e validação de código
@@ -46,12 +47,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Preparar diretório hiphop-backend para build
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p hiphop-backend
+          rsync -a --delete --exclude 'hiphop-backend' ./ ./hiphop-backend/
+
       - name: Build e push da imagem para o Docker Hub
         if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./hiphop-backend
+          file: ./hiphop-backend/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:latest
@@ -73,6 +80,7 @@ jobs:
         run: |
           ssh ${{ secrets.SERVER_USER_PRODUCTION }}@${{ secrets.SERVER_HOST_PRODUCTION }} "
             IMAGE_NAME='${{ secrets.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:latest'
+            mkdir -p ${{ env.PRODUCTION_DEPLOY_PATH }}
             echo '${{ secrets.DOCKERHUB_TOKEN }}' | docker login -u '${{ secrets.DOCKERHUB_USERNAME }}' --password-stdin
             docker pull \$IMAGE_NAME
             docker stop ${{ env.CONTAINER_NAME }} || true
