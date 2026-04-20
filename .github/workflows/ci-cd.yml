@@ -60,6 +60,27 @@ jobs:
           context: ./hiphop-backend
           file: ./hiphop-backend/Dockerfile
           push: true
+          build-args: |
+            PORT=${{ secrets.PORT }}
+            NODE_ENV=${{ secrets.NODE_ENV }}
+            DB_CLIENT=${{ secrets.DB_CLIENT }}
+            DB_POOL_MIN=${{ secrets.DB_POOL_MIN }}
+            DB_POOL_MAX=${{ secrets.DB_POOL_MAX }}
+            DB_HOST=${{ secrets.DB_HOST }}
+            DB_PORT=${{ secrets.DB_PORT }}
+            DB_USER=${{ secrets.DB_USER }}
+            DB_PASS=${{ secrets.DB_PASS }}
+            DB_DATABASE=${{ secrets.DB_DATABASE }}
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
+            JWT_EXPIRES_IN=${{ secrets.JWT_EXPIRES_IN }}
+            SALT_RESULT=${{ secrets.SALT_RESULT }}
+            MAIL_HOST=${{ secrets.MAIL_HOST }}
+            MAIL_PORT=${{ secrets.MAIL_PORT }}
+            MAIL_SECURITY=${{ secrets.MAIL_SECURITY }}
+            MAIL_USER=${{ secrets.MAIL_USER }}
+            MAIL_PASS=${{ secrets.MAIL_PASS }}
+            MAIL_FROM=${{ secrets.MAIL_FROM }}
+            FRONTEND_URL=${{ secrets.FRONTEND_URL }}
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
